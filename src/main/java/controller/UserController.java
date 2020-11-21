@@ -33,12 +33,13 @@ public class UserController {
     private CategoryService categoryService;
 
     @RequestMapping("/reg")
-    public ModelAndView addUser(User user){
+    public ModelAndView addUser(User user) {
         ModelAndView modelAndView = new ModelAndView();
         String tips = "注册失败";
-        if(userService.addUser(user)){
+        if (userService.addUser(user)) {
             tips = user.getUSER_NAME() + "注册成功";
-        };
+        }
+        ;
         // 添加数据
         modelAndView.addObject(tips);
         // 指定结果页面
@@ -47,32 +48,30 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login")
-    public ModelAndView loginUser(HttpServletRequest request, HttpServletResponse response, User user){
+    public ModelAndView loginUser(HttpServletRequest request, HttpServletResponse response, User user) {
         ModelAndView modelAndView = new ModelAndView();
         User result = userService.selectUserByUserIdAndPassword(user);
         if (result != null) {
             // 更新用户状态为在线状态
             result.setUSER_STATUS(1);
             userService.updateUser(result);
-
-            request.setAttribute("flist",categoryService.selectFatherCategory());
-            request.setAttribute("clist",categoryService.selectSonCategory());
+            request.setAttribute("flist", categoryService.selectFatherCategory());
+            request.setAttribute("clist", categoryService.selectSonCategory());
             HttpSession session = request.getSession();
-            session.setAttribute("name", result);
+            session.setAttribute("user", result);
             session.setAttribute("isLogin", "1");
-            modelAndView.addObject("username",result.getUSER_ID());
-            modelAndView.addObject("user",result);
+            modelAndView.addObject("username", result.getUSER_ID());
+            modelAndView.addObject("user", result);
             modelAndView.setViewName("redirect:/index.jsp");
-        }else {
-            request.setAttribute("msg","用户名或者密码错误哦！");
-            modelAndView.addObject("msg","用户名或者密码错误！");
+        } else {
+            modelAndView.addObject("msg", "用户名或者密码错误！");
             modelAndView.setViewName("/login.jsp");
         }
         return modelAndView;
     }
 
     @RequestMapping("/GetCode")
-    public void getCode(HttpServletRequest request, HttpServletResponse response){
+    public void getCode(HttpServletRequest request, HttpServletResponse response) {
         // 调用工具类生成的验证码和验证码图片
         Map<String, Object> codeMap = CodeUtil.generateCodeAndPic();
         HttpSession session = request.getSession();
@@ -94,5 +93,19 @@ public class UserController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("/Logout")
+    public ModelAndView logOut(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("logout");
+        User user = (User) request.getSession().getAttribute("user");
+        user.setUSER_STATUS(0);
+        if (userService.updateUser(user)) {
+            modelAndView.addObject("logout", 1);
+            request.getSession().setAttribute("isLogin",0);
+        } else {
+            modelAndView.addObject("logout", 0);
+        }
+        return modelAndView;
     }
 }

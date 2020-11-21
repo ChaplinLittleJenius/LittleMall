@@ -10,10 +10,10 @@
 
     <!-- 配置视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-<!--        &lt;!&ndash; 配置逻辑视图的前缀 &ndash;&gt;-->
-<!--        <property name="prefix" value="/WEB-INF/jsp/"/>-->
-<!--        &lt;!&ndash; 配置逻辑视图的后缀 &ndash;&gt;-->
-<!--        <property name="suffix" value=".jsp"/>-->
+        <!-- 配置逻辑视图的前缀 -->
+        <property name="prefix" value="/"/>
+        <!-- 配置逻辑视图的后缀 -->
+        <property name="suffix" value=".jsp"/>
     </bean>
 
     <!--
@@ -26,12 +26,14 @@
     <mvc:default-servlet-handler/>
 
     <!--声明拦截器(拦截器可以有多个)-->
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
         <mvc:interceptor>
-            <!--指定要拦截的请求地址path-->
-            <mvc:mapping path="/manage/**"/>
-            <!--拦截器对象-->
+            &lt;!&ndash;指定要拦截的请求地址path&ndash;&gt;
+            <mvc:mapping path="/LittleMall/*.jsp"/>
+            &lt;!&ndash;指定不拦截的请求地址path&ndash;&gt;
+            <mvc:exclude-mapping path="/LittleMall/login.jsp" />
+            &lt;!&ndash;拦截器对象&ndash;&gt;
             <bean class="handler.Interceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 </beans>

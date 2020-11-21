@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,16 @@
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="css/public.css"/>
     <link rel="stylesheet" type="text/css" href="css/login.css"/>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+                alert(${sessionScope.get("error")})
+            }
+        )
+    </script>
 </head>
+
+
 <body><!-------------------login-------------------------->
 <div class="login">
     <form action="User/login" method="post"><h1><a href="index.html"></a></h1>
@@ -16,7 +25,10 @@
         <p><input type="text" name="USER_ID" value="" placeholder="昵称/邮箱/手机号"></p>
         <p><input type="password" name="USER_PASSWORD" value="" placeholder="密码"></p>
         <p><input type="submit" name="" value="登  录"></p>
-        <p class="txt"><a class="" href="register.jsp">免费注册</a><a href="forget.html">忘记密码？</a></p></form>
+        <p class="txt"><a class="" href="register.jsp">免费注册
+        </a><a href="forget.html">忘记密码？</a>
+        </p>
+    </form>
 </div>
 </body>
 </html>

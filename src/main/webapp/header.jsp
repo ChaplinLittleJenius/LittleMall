@@ -4,17 +4,17 @@
 <div class="head">
     <div class="wrapper clearfix">
         <div class="clearfix" id="top"><h1 class="fl">
-            <a href="index.html"><img src="img/logo.png"/></a></h1>
+            <a href="index.jsp"><img src="img/logo.png"/></a></h1>
 
             <div class="fr clearfix" id="top1"><p class="fl">
-                <c:if test="${isLogin !=1 }">
+                <c:if test="${isLogin != 1 }">
 
                     <a href="login.jsp" id="login">登录</a><a href="register.jsp" id="reg">注册</a>
                 </c:if>
 
                 <c:if test="${isLogin ==1 }">
 
-                    欢迎您: <a href="${pageContext.request.contextPath}/mygxin.jsp" id="login">${name.USER_NAME }</a>
+                    欢迎您: <a href="${pageContext.request.contextPath}/mygxin.jsp" id="login">${user.USER_NAME }</a>
                 </c:if>
 
                 <c:if test="${isAdminLogin  ==1 }">

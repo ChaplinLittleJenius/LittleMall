@@ -12,7 +12,7 @@
 <body><!------------------------------head------------------------------>
 <div class="head ding">
     <div class="wrapper clearfix">
-        <div class="clearfix" id="top"><h1 class="fl"><a href="index.html"><img src="img/logo.png"/></a></h1>
+        <div class="clearfix" id="top"><h1 class="fl"><a href="index.jsp"><img src="img/logo.png"/></a></h1>
             <div class="fr clearfix" id="top1"><p class="fl"><a href="#" id="login">登录</a><a href="#" id="reg">注册</a>
             </p>
                 <form action="#" method="get" class="fl"><input type="text" placeholder="搜索"/><input type="button"/>
@@ -78,7 +78,7 @@
     <div class="wrapper clearfix">
         <div class="zuo fl">
             <h3><a href="#"><img src="img/tx.png"/></a>
-                <p class="clearfix"><span class="fl">[${name.USER_NAME }]</span><span>[<a href="logout">退出登录</a>]</span></p></h3>
+                <p class="clearfix"><span class="fl">[${user.USER_NAME }]</span><span>[<a href="${pageContext.request.contextPath}/User/Logout">退出登录</a>]</span></p></h3>
             <div><h4>我的交易</h4>
                 <ul>
                     <li><a href="cart.jsp">我的购物车</a></li>
@@ -100,8 +100,8 @@
         <div class="you fl">
             <div class="tx clearfix">
                 <div class="fl clearfix"><a href="#" class="fl"><img src="img/tx.png"/></a>
-                    <p class="fl"><span>${name.USER_NAME }</span><a href="mygrxx.html">修改个人信息></a></p></div>
-                <div class="fr">绑定邮箱：${name.USER_EMAIL }</div>
+                    <p class="fl"><span>${user.USER_NAME }</span><a href="${pageContext.request.contextPath}/mygrxx.html">修改个人信息></a></p></div>
+                <div class="fr">绑定邮箱：${user.USER_EMAIL }</div>
             </div>
             <div class="bott">
                 <div class="clearfix"><a href="#" class="fl"><img src="img/gxin1.jpg"/></a>
